@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
-    <h1>Build a Blog</h1>
 
     {% if blogs|length == 0 %}
     <p>No blog posts yet</p>
     
-<!--BELOW: this SEEMS right...displays proper URL-->
 
     {% else %}
         {% for blog in blogs %}
-        <div>
-        <h2><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></h2>
-            <p>{{blog.body}}</p>
-        </div>
+        <div class="blog-unit">
+        <h2 class="blog-title"><a href='/blog?id={{blog.id}}'>{{blog.title}}</a></h2>
         <hr>
+        <p class="blog-body">{{blog.body}}</p>
+        </div>
         {% endfor %}
     
     {% endif %}

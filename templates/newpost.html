@@ -2,21 +2,23 @@
 
 {% block content %}
 
-<h1>Add A New Blog Post</h1>
+<div class="form">
+<h1>Want to contribute to the blog?</h1>
+
 <form method = 'POST'>
-    <label>Post Title
-        <input name="title" type="text" value="{{title}}" />
-    </label>
+    <div class="section">Add your own post here!</div>
+    <div class="inner-wrap">
+        <label>What would you like to call your post?<input name="title" type="text" value="{{title}}" /></label>
     <span class="error">{{title_error}}</span>
-    <p>
-    <label>Blog Content
-        <textarea name="body">{{body}}</textarea>
-    </label>
+
+    <label>What would you like to say?<textarea name="body" rows="10" cols="10">{{body}}</textarea></label>
     <span class="error">{{body_error}}</span>
-    </p>
-    <p>
-    <input type="submit" value="Publish Blog Post" />
-    </p>
+    </div>
+
+    <div class="submit">
+        <input type="submit" value="Submit your post!" name="Submit your post!" />
+    </div>
 </form>
+</div>
 
 {% endblock %}
