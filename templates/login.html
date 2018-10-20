@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Log in to your account!</h1>
+<p>(if you don't have an account, you can 
+    <a href="/signup">sign up</a> for one.)</p>
+
+    <form action="/login" method="post">
+        <p><label>username
+            <input name="username" type="text" value="{{username}}">
+        </label>
+        <span class="error">{{username_error}}</span>
+        </p>
+
+        <p>
+        <label>password
+            <input name="password" type="password">
+        </label>
+        <span class="error">{{password_error}}</span>
+        </p>
+
+        <input type='submit' value='Log on to your account'>
+
+    </form>
+
+{% endblock %}

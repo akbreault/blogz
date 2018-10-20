@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>{{page_title}}</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
         <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
         <style>
@@ -36,23 +36,15 @@
             .links{
                 text-align: right;
                 display: block;
-                margin: -20px 10px;
-            }
-
-            .links .main-link{
+                margin: -55px 10px;
                 position: relative;
-                top: 55px;
-            }
-
-            .links .new-link{
-                position: relative;
-                top: 105px;
+                top: 85px;
             }
 
             .links a {
                 color:#f0f0f0;
                 text-decoration: none;
-                font-size: 22px;
+                font-size: 18px;
             }
 
             .blog-title a {
@@ -70,9 +62,17 @@
     </head>
 
     <body>
-
-            <p class="links"><a href='/blog' class="main-link">Main page</a></p>
-            <p class="links"><a href='/new-post' class="new-link">Make a new post</a></p>
+            <span class="links">
+                <a href='/login' class="each_link">Log In</a>
+                <br />
+                <a href='/'>Home</a>
+                <br />
+                <a href='/blog' class="each_link">Blogs</a>
+                <br />
+                <a href='/new-post' class="each_link">Make a new post</a>
+                <br />
+                <a href='/logout' class="each_link">Log Out</a>
+            </span>
             
         <h1 class="main-heading">Build-a-Blog</h1>
 

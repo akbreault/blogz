@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Register for your own account</h1>
+<form action='/signup' method='post'>
+    <p>
+    <label>What username would you like to use?
+        <input name='username' type='text' value='{{username}}' />
+    </label>
+    <span class="error">{{username_error}}</span>
+    <span class="error">{{unique_error}}</span>
+    </p>
+
+    <p>
+    <label>Password
+        <input name='password' type='password' />
+    </label>
+    <span class="error">{{password_error}}</span>
+    </p>
+
+    <p>
+    <label>Verify your password
+        <input name="verify" type='password' />
+    </label>
+    <span class="error">{{verify_error}}</span>
+    </p>
+
+    <input type='submit' value='Register for your account'>
+
+</form>
+
+
+{% endblock %}
