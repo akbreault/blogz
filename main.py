@@ -45,22 +45,32 @@ def require_login():
 
 @app.route('/')
 def index():
+    if 'username' in session:
+        logged_in = True
+    else:
+        logged_in = False
+
     users = User.query.all()
-    return render_template('index.html', users=users, page_title="Homepage")
+    return render_template('index.html', users=users, logged_in=logged_in, page_title="Homepage")
 
 
 
 @app.route('/blog')
 def list_blogs():
+    if 'username' in session:
+        logged_in = True
+    else:
+        logged_in = False
+
+
     if len(request.args) == 0:  
         blogs = Blog.query.all()
         
-    
         if len(blogs) > 0:
-            return render_template('blog.html', blogs=blogs, page_title="Blog Posts")
+            return render_template('blog.html', blogs=blogs, logged_in = logged_in, page_title="Blog Posts")
 
         else: 
-            return render_template('blog.html', page_title="Blog Posts")
+            return render_template('blog.html', logged_in = logged_in, page_title="Blog Posts")
     
 
     elif request.args.get('id') != None:
@@ -74,7 +84,7 @@ def list_blogs():
        username = user.username
 
 
-       return render_template('blogpost.html', title=title, body=body, username=username, user=user, page_title="Blog Post")
+       return render_template('blogpost.html', title=title, body=body, username=username, logged_in = logged_in, user=user, page_title="Blog Post")
 
 
     elif request.args.get('user') != None:
@@ -84,7 +94,7 @@ def list_blogs():
         blogs = user.blogs
 
         
-        return render_template('singleUser.html', user=user, blogs=blogs, page_title="This User's Posts")
+        return render_template('singleUser.html', user=user, blogs=blogs, logged_in = logged_in, page_title="This User's Posts")
 
 
 
@@ -123,9 +133,9 @@ def signup():
             session['username'] = username
             return redirect('/new-post')
         else:
-            return render_template('signup.html', username=username, username_error=username_error, password_error=password_error, verify_error=verify_error, unique_error=unique_error, page_title="Signup Error")
+            return render_template('signup.html', username=username, username_error=username_error, logged_in = False, password_error=password_error, verify_error=verify_error, unique_error=unique_error, page_title="Signup Error")
 
-    return render_template('signup.html', page_title='Signup')
+    return render_template('signup.html', page_title='Signup', logged_in = False)
 
 
 
@@ -150,9 +160,9 @@ def login():
         else:
             username_error = 'No such username'
         
-        return render_template('login.html', username=username, username_error=username_error, password_error=password_error, page_title="Log In Error")
+        return render_template('login.html', username=username, logged_in = False, username_error=username_error, password_error=password_error, page_title="Log In Error")
 
-    return render_template('login.html', page_title="Log In")
+    return render_template('login.html', logged_in = False, page_title="Log In")
 
 
 
@@ -187,9 +197,9 @@ def add_post():
             db.session.commit()
             return redirect('/blog?id={0}'.format(new_blog.id))
         else:
-            return render_template('newpost.html', title=title, title_error=title_error, body=body, body_error=body_error, page_title="Posting Error")
+            return render_template('newpost.html', logged_in = True, title=title, title_error=title_error, body=body, body_error=body_error, page_title="Posting Error")
     
-    return render_template('newpost.html', page_title="New Post")
+    return render_template('newpost.html', logged_in = True, page_title="New Post")
 
 
 

@@ -63,7 +63,9 @@
 
     <body>
             <span class="links">
+                {% if not logged_in %}
                 <a href='/login' class="each_link">Log In</a>
+                {% endif %}
                 <br />
                 <a href='/'>Home</a>
                 <br />
@@ -71,7 +73,9 @@
                 <br />
                 <a href='/new-post' class="each_link">Make a new post</a>
                 <br />
+                {% if logged_in %}
                 <a href='/logout' class="each_link">Log Out</a>
+                {% endif %}
             </span>
             
         <h1 class="main-heading">Build-a-Blog</h1>
